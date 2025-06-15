@@ -1,0 +1,444 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- Root Variables --- */
+:root {
+    /* Colors */
+    --primary: #2C3E50; /* Dark Blue/Charcoal */
+    --accent: #E74C3C;  /* Red/Orange */
+    --bg: #ECF0F1;      /* Light Gray */
+    --text: #34495E;    /* Dark Gray/Blue */
+    --surface: #18BC9C; /* Teal/Turquoise */
+    --shadow: rgba(44, 62, 80, 0.2); /* Soft shadow from primary color */
+
+    /* Fonts */
+    --font-family-headings: 'Poppins', sans-serif;
+    --font-family-body: 'Poppins', sans-serif;
+
+    /* Layout */
+    --max-page-width: 1200px;
+    --spacing-unit: 1.5rem; /* Cozy/Modular spacing */
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+    --transition-timing: ease-in-out;
+}
+
+/* --- Dark Mode using prefers-color-scheme --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #1A252F; /* Darker Primary */
+        --accent: #FF6B6B;  /* Brighter Accent */
+        --bg: #2C3E50;      /* Dark Blue/Charcoal as background */
+        --text: #ECF0F1;    /* Light Gray as text */
+        --surface: #1ABC9C; /* Slightly brighter teal */
+        --shadow: rgba(0, 0, 0, 0.5); /* Stronger shadow in dark mode */
+    }
+}
+
+/* --- Base Styles --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px; /* Base font size */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-body);
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    color: var(--primary);
+    margin-bottom: var(--spacing-unit);
+    font-weight: 600;
+}
+
+/* Responsive Font Scaling with clamp() */
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Min 2.5rem, Max 4rem */
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Min 2rem, Max 3rem */
+}
+
+h3 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem); /* Min 1.75rem, Max 2.5rem */
+}
+
+p {
+    margin-bottom: var(--spacing-unit);
+    font-size: clamp(1rem, 2vw, 1.125rem); /* Min 1rem, Max 1.125rem */
+}
+
+/* --- Layout --- */
+.container {
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+    padding: var(--spacing-unit);
+}
+
+section {
+    padding: var(--spacing-unit) 0;
+}
+
+/* Header */
+.header {
+    background-color: var(--primary);
+    color: var(--bg);
+    padding: var(--spacing-unit) 0;
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bg);
+    text-decoration: none;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-unit); /* Loose spacing for nav items */
+}
+
+.nav a {
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 400;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary);
+    color: var(--bg);
+    padding: var(--spacing-unit) 0;
+    text-align: center;
+    position: sticky; /* Sticky footer */
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px var(--shadow);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--bg);
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color var(--transition-speed) var(--transition-timing),
+                transform var(--transition-speed) var(--transition-timing);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: darken(var(--accent), 10%); /* Placeholder for darken effect */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--surface);
+    color: var(--bg);
+}
+
+.btn-secondary:hover {
+    background-color: darken(var(--surface), 10%); /* Placeholder for darken effect */
+}
+
+/* --- Images & Media --- */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+    border-radius: 0.5rem; /* Consistent rounded corners */
+}
+
+/* --- Cards (Responsive) --- */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-unit); /* Consistent spacing between cards */
+    justify-content: center;
+    align-items: stretch; /* Ensure cards have consistent height */
+}
+
+.card {
+    flex: 1 1 calc(33% - var(--spacing-unit) * 2 / 3); /* 3 cards per row, accounting for gap */
+    min-width: 280px; /* Minimum width for cards before wrapping */
+    background-color: var(--bg);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px var(--shadow);
+    padding: var(--spacing-unit);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform var(--transition-speed) var(--transition-timing),
+                box-shadow var(--transition-speed) var(--transition-timing);
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    flex-grow: 1; /* Make paragraph take available space for consistent height */
+    margin-bottom: var(--spacing-unit);
+}
+
+.card-actions {
+    margin-top: auto; /* Push actions to the bottom */
+}
+
+/* Card Hover Animation */
+.card:hover {
+    transform: translateY(-8px); /* Elevate effect */
+    box-shadow: 0 8px 16px rgba(44, 62, 80, 0.3); /* Stronger shadow */
+}
+
+/* --- Interactivity --- */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-speed) var(--transition-timing);
+}
+
+/* Link Hover Effect: Underline Grow & Color Change */
+.nav a:hover {
+    color: var(--surface); /* Change color on hover */
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--surface);
+    transition: width var(--transition-speed) var(--transition-timing);
+}
+
+.nav a:hover::after {
+    width: 100%; /* Underline grows from left */
+}
+
+a:not(.nav a):hover { /* General link hover */
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+}
+
+/* --- Accessibility & UX --- */
+/* Custom :focus styles */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+.collapsible-label:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 0.25rem; /* Match general rounded style */
+}
+
+/* Ensure high-contrast for text (handled by color variables, but good to note) */
+/* WCAG AA compliance is targeted by the chosen color palette. */
+
+/* --- Optional Add-ons --- */
+
+/* CSS-only Collapsible Sections */
+.collapsible-toggle {
+    display: none; /* Hide the checkbox */
+}
+
+.collapsible-label {
+    display: block;
+    cursor: pointer;
+    background-color: var(--surface);
+    color: var(--bg);
+    padding: 0.8rem var(--spacing-unit);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    transition: background-color var(--transition-speed) var(--transition-timing);
+}
+
+.collapsible-label:hover {
+    background-color: darken(var(--surface), 10%); /* Placeholder for darken effect */
+}
+
+.collapsible-label::before {
+    content: '+ '; /* Plus sign when collapsed */
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: transform var(--transition-speed) var(--transition-timing);
+}
+
+.collapsible-toggle:checked + .collapsible-label::before {
+    content: '- '; /* Minus sign when expanded */
+    transform: rotate(90deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-speed) var(--transition-timing),
+                padding var(--transition-speed) var(--transition-timing);
+    padding: 0 var(--spacing-unit); /* Initial padding when collapsed */
+    background-color: var(--bg);
+    border-radius: 0.5rem;
+}
+
+.collapsible-toggle:checked + .collapsible-label + .collapsible-content {
+    max-height: 500px; /* Adjust as needed, ensure it's larger than content */
+    padding: var(--spacing-unit); /* Padding when expanded */
+    box-shadow: inset 0 2px 4px var(--shadow);
+}
+
+/* --- Responsive Design (Mobile First) --- */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        margin-top: var(--spacing-unit);
+        gap: 0.5rem;
+    }
+
+    .nav a {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav a:last-child {
+        border-bottom: none;
+    }
+
+    .card {
+        flex: 1 1 100%; /* Single card per row on mobile */
+    }
+
+    .card-grid {
+        padding: 0 var(--spacing-unit); /* Add horizontal padding to the grid itself */
+    }
+
+    section {
+        padding: calc(var(--spacing-unit) * 1.5) 0;
+    }
+
+    h1 {
+        margin-bottom: var(--spacing-unit);
+    }
+}
+
+/* --- Print Stylesheet --- */
+@media print {
+    body {
+        font-family: 'Times New Roman', serif;
+        color: #000;
+        background: #fff;
+        font-size: 12pt;
+    }
+
+    /* Hide non-essential elements for print */
+    .header, .nav, .footer, .btn, .collapsible-toggle, .collapsible-label, .card:hover,
+    .collapsible-toggle:checked + .collapsible-label + .collapsible-content {
+        display: none !important;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    section {
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+        page-break-inside: avoid; /* Avoid breaking content across pages */
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #000 !important;
+        background: none !important;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        page-break-after: avoid; /* Keep heading with its content */
+    }
+
+    p {
+        margin-bottom: 0.5rem;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #000; /* Force black links */
+    }
+
+    img {
+        max-width: 80%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-grid {
+        display: block; /* Stack cards vertically for print */
+        gap: 0;
+    }
+
+    /* Placeholder for darken function, as pure CSS doesn't have it natively */
+    /* If using a preprocessor, these would be automatically handled. */
+    .btn:hover {
+        background-color: #C0392B; /* A slightly darker red */
+    }
+    .btn-secondary:hover {
+        background-color: #16A085; /* A slightly darker teal */
+    }
+    .collapsible-label:hover {
+        background-color: #16A085; /* A slightly darker teal */
+    }
+}
