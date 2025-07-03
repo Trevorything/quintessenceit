@@ -8,15 +8,19 @@
     --brand-black: #080513;
     --brand-white: #B8B8BB;
     --font-family: 'EB Garamond', serif;
-    --spacing-unit: 1.5rem;
-    --transition-speed: 0.3s;
+    --transition-speed: 0.4s;
 }
 
-/* --- Base & Background --- */
+/* --- Base & Animated Background --- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 html {
@@ -26,158 +30,152 @@ html {
 body {
     font-family: var(--font-family);
     color: var(--brand-white);
-    /* A more subtle and directional gradient for depth */
-    background: linear-gradient(150deg, #1c1a27 0%, var(--brand-black) 100%);
+    background-color: var(--brand-black);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(133, 44, 221, 0.2), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(87, 24, 150, 0.2), transparent 40%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding: calc(var(--spacing-unit) * 2);
-    display: flex;
-    justify-content: center;
     min-height: 100vh;
 }
 
-/* --- Layout & Containers --- */
-.page-wrapper {
-    max-width: 1100px;
+/* --- Layout & Spacing --- */
+.page-canvas {
     width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5vh 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-unit);
+    text-align: center;
 }
 
-.logo-anchor {
-    margin-bottom: var(--spacing-unit);
+.main-focus {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+}
+
+.content-flow section {
+    width: 100%;
+    padding: 15vh 0; /* Dramatic vertical spacing */
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s; /* Stagger the animation */
 }
 
 .logo-anchor img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--brand-white);
-    padding: 5px;
-}
-
-.content-section {
-    background: var(--primary-purple);
-    padding: calc(var(--spacing-unit) * 2);
-    border-radius: 12px;
-    width: 100%;
-    text-align: center;
-    border: 1px solid rgba(133, 44, 221, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.two-column-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-unit);
-    width: 100%;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 2rem;
 }
 
 /* --- Typography --- */
-h1, h2 {
-    color: var(--brand-white);
-    font-weight: 700;
-}
-
 h1 {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-    margin-bottom: 0.5rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(184, 184, 187, 0.3);
 }
 
 .subtitle {
-    font-size: clamp(1.1rem, 3vw, 1.25rem);
-    max-width: 60ch;
-    margin: 0 auto 1.5rem auto;
-    color: var(--brand-white);
-    opacity: 0.9;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    max-width: 55ch;
+    margin: 1rem auto 2.5rem auto;
+    line-height: 1.6;
     font-weight: 400;
+    opacity: 0.8;
 }
 
 h2 {
-    font-size: clamp(1.6rem, 4vw, 2rem);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--brand-white);
     margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    /* Elegant underline accent */
-    border-bottom: 2px solid var(--light-violet);
-    display: inline-block;
 }
 
 p {
-    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
     line-height: 1.7;
-    font-weight: 500;
-    max-width: 55ch;
+    max-width: 60ch;
     margin: 0 auto;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
-/* --- Buttons --- */
-.action-buttons {
-    margin-top: 2rem;
+/* --- The Action Nexus (Buttons) --- */
+.action-nexus {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 12px 28px;
-    border-radius: 8px;
+    padding: 15px 35px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: all var(--transition-speed) ease;
     border: 2px solid transparent;
     cursor: pointer;
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px; /* Modern rounded buttons */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
 }
 
 .btn-primary {
-    background-color: var(--brand-white);
+    background: var(--brand-white);
     color: var(--primary-purple);
+    border-color: var(--brand-white);
 }
 
 .btn-primary:hover {
-    background-color: transparent;
+    background: transparent;
     color: var(--brand-white);
-    border-color: var(--brand-white);
-    transform: translateY(-3px);
+    transform: scale(1.05);
 }
 
 .btn-secondary {
-    background-color: transparent;
     color: var(--brand-white);
-    border: 2px solid var(--light-violet);
 }
 
 .btn-secondary:hover {
-    background-color: var(--light-violet);
-    color: var(--brand-white);
-    transform: translateY(-3px);
+    border-color: var(--light-violet);
+    color: #fff;
+    transform: scale(1.05);
 }
+
 
 /* --- Other Elements --- */
 #setmore-widget-placeholder {
-    border: 2px dashed var(--light-violet);
-    padding: 40px;
     margin-top: 2rem;
-    border-radius: 10px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px dashed var(--light-violet);
     color: var(--light-violet);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
-    body {
-        padding: var(--spacing-unit);
+    .page-canvas {
+        padding: 5vh 1rem;
     }
-
-    .two-column-grid {
-        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    .main-focus {
+        min-height: 70vh;
     }
-
-    .content-section {
-        padding: var(--spacing-unit);
+    .content-flow section {
+        padding: 10vh 0;
     }
 }
