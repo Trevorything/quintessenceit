@@ -1,19 +1,19 @@
 /* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap');
 
 /* --- Root Variables --- */
 :root {
     /* Colors */
-    --primary: #2C3E50; /* Dark Blue/Charcoal */
-    --accent: #E74C3C;  /* Red/Orange */
-    --bg: #ECF0F1;      /* Light Gray */
-    --text: #34495E;    /* Dark Gray/Blue */
-    --surface: #18BC9C; /* Teal/Turquoise */
-    --shadow: rgba(44, 62, 80, 0.2); /* Soft shadow from primary color */
+    --primary: #571896; /* Dark Primary Purple */
+    --accent: #852CDD;  /* Light Secondary Violet */
+    --bg: #B8B8BB;      /* White */
+    --text: #080513;    /* Black */
+    --surface: #852CDD; /* Using Light Secondary Violet as surface color */
+    --shadow: rgba(87, 24, 150, 0.2); /* Soft shadow from primary color */
 
     /* Fonts */
-    --font-family-headings: 'Poppins', sans-serif;
-    --font-family-body: 'Poppins', sans-serif;
+    --font-family-headings: 'EB Garamond', serif;
+    --font-family-body: 'EB Garamond', serif;
 
     /* Layout */
     --max-page-width: 1200px;
@@ -27,11 +27,11 @@
 /* --- Dark Mode using prefers-color-scheme --- */
 @media (prefers-color-scheme: dark) {
     :root {
-        --primary: #1A252F; /* Darker Primary */
-        --accent: #FF6B6B;  /* Brighter Accent */
-        --bg: #2C3E50;      /* Dark Blue/Charcoal as background */
-        --text: #ECF0F1;    /* Light Gray as text */
-        --surface: #1ABC9C; /* Slightly brighter teal */
+        --primary: #852CDD;  /* Light Secondary Violet as primary in dark mode */
+        --accent: #571896; /* Dark Primary Purple as accent in dark mode */
+        --bg: #080513;      /* Black as background */
+        --text: #B8B8BB;    /* White as text */
+        --surface: #571896; /* Using Dark Primary Purple as surface color */
         --shadow: rgba(0, 0, 0, 0.5); /* Stronger shadow in dark mode */
     }
 }
@@ -164,7 +164,7 @@ section {
 }
 
 .btn:hover {
-    background-color: darken(var(--accent), 10%); /* Placeholder for darken effect */
+    filter: brightness(110%);
     transform: translateY(-2px);
 }
 
@@ -174,7 +174,7 @@ section {
 }
 
 .btn-secondary:hover {
-    background-color: darken(var(--surface), 10%); /* Placeholder for darken effect */
+    filter: brightness(110%);
 }
 
 /* --- Images & Media --- */
@@ -226,7 +226,7 @@ img {
 /* Card Hover Animation */
 .card:hover {
     transform: translateY(-8px); /* Elevate effect */
-    box-shadow: 0 8px 16px rgba(44, 62, 80, 0.3); /* Stronger shadow */
+    box-shadow: 0 8px 16px rgba(87, 24, 150, 0.3); /* Stronger shadow */
 }
 
 /* --- Interactivity --- */
@@ -274,9 +274,6 @@ textarea:focus,
     border-radius: 0.25rem; /* Match general rounded style */
 }
 
-/* Ensure high-contrast for text (handled by color variables, but good to note) */
-/* WCAG AA compliance is targeted by the chosen color palette. */
-
 /* --- Optional Add-ons --- */
 
 /* CSS-only Collapsible Sections */
@@ -298,7 +295,7 @@ textarea:focus,
 }
 
 .collapsible-label:hover {
-    background-color: darken(var(--surface), 10%); /* Placeholder for darken effect */
+    filter: brightness(110%);
 }
 
 .collapsible-label::before {
@@ -428,17 +425,5 @@ textarea:focus,
     .card-grid {
         display: block; /* Stack cards vertically for print */
         gap: 0;
-    }
-
-    /* Placeholder for darken function, as pure CSS doesn't have it natively */
-    /* If using a preprocessor, these would be automatically handled. */
-    .btn:hover {
-        background-color: #C0392B; /* A slightly darker red */
-    }
-    .btn-secondary:hover {
-        background-color: #16A085; /* A slightly darker teal */
-    }
-    .collapsible-label:hover {
-        background-color: #16A085; /* A slightly darker teal */
     }
 }
